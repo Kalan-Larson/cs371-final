@@ -1,6 +1,13 @@
 <?php
 include("db.php");
 
+//Checks if the customer is logged in.
+//If not, redirects them to the login page.
+if (!isset($_SESSION['customer'])) {
+    header('Location: customer-login.php');
+    exit;
+}
+
 $sql = "SELECT * FROM services";
 $services = $conn->query($sql);
 ?>

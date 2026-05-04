@@ -1,6 +1,13 @@
 <?php
 include("db.php");
 
+//Checks if the customer is logged in.
+//If not, redirects them to the login page.
+if (!isset($_SESSION['customer'])) {
+    header('Location: customer-login.php');
+    exit;
+}
+
 // Collect submitted form data
 $self = $_SERVER['PHP_SELF'];
 $selectedServices = $_POST['services[]'] ?? [];
