@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'CustomerID' => $user['CustomerID'],
         ];
 
-        // Send the authenticated user to the home page.
+        // Send the authenticated user to the dashboard page.
         header('Location: customer-dashboard.php');
         exit;
     }
