@@ -5,9 +5,14 @@ include("db.php");
 session_start();
 $selectedServices = $_SESSION['selectedServices'] ?? [];
 
-// Probably not final way of getting customer id, proof
-// of concept for now
-$customerID = $_SESSION['customerID'];
+//Checks if the customer is logged in.
+//If not, redirects them to the login page.
+if (!isset($_SESSION['customer'])) {
+    header('Location: customer-login.php');
+    exit;
+}
+$user = $_SESSION['customer'];
+$customerID = (int) ($user['CustomerID'] ?? 0);
 
 // Collect submitted form data
 $yardSize = $_POST['yardSize'] ?? '';
