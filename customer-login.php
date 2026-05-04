@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Look up the customer instance by email and password.
         $statement = $conn->prepare(
-            'SELECT CustomerID from customers WHERE email = ? AND password = ?'
+            'SELECT CustomerID from customers WHERE Email = ? AND PasswordHash = ?'
         );
         $statement->bind_param('ss', $email, $password);
 
@@ -48,24 +48,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
-        // Read the first matching account, if one exists.
-        $result = $statement->get_result();
-        $user = $result->fetch_assoc();
-        $result->free();
-        $statement->close();
+        // Check if a row was returned.
+        if ($statement->affected_rows === 1) {
+            // Read the first matching account, if one exists.
+            $result = $statement->get_result();
+            $user = $result->fetch_assoc();
+            $result->free();
+            $statement->close();
 
-        // Persist the minimum user data needed by the dashboard.
-        $_SESSION['customer'] = [
-            'CustomerID' => $user['CustomerID'],
-        ];
+            // Persist the minimum user data needed by the dashboard.
+            $_SESSION['customer'] = [
+                'CustomerID' => $user['CustomerID'],
+            ];
 
-        // Send the authenticated user to the dashboard page.
-        header('Location: customer-dashboard.php');
-        exit;
+            // Send the authenticated user to the dashboard page.
+            header('Location: customer-dashboard.php');
+            exit;
+        }
+
+        // Show a generic error when the account is missing or the password does not match.
+        $error = 'Invalid login credentials.';
     }
-
-    // Show a generic error when the account is missing or the password does not match.
-    $error = 'Invalid login credentials.';
 }
 ?>
 <!DOCTYPE html>

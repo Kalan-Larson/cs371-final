@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Look up the admin instance by username and password.
         $statement = $conn->prepare(
-            'SELECT AdminID from admins WHERE username = ? AND password = ?'
+            'SELECT AdminID from admins WHERE Username = ? AND PasswordHash = ?'
         );
         $statement->bind_param('ss', $username, $password);
 
@@ -48,24 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
-        // Read the first matching account, if one exists.
-        $result = $statement->get_result();
-        $user = $result->fetch_assoc();
-        $result->free();
-        $statement->close();
+        // Check if a row was returned.
+        if ($statement->affected_rows === 1) {
+            // Read the first matching account, if one exists.
+            $result = $statement->get_result();
+            $user = $result->fetch_assoc();
+            $result->free();
+            $statement->close();
 
-        // Persist the minimum user data needed by the dashboard.
-        $_SESSION['admin'] = [
-            'AdminID' => $user['AdminID'],
-        ];
+            // Persist the minimum user data needed by the dashboard.
+            $_SESSION['admin'] = [
+                'AdminID' => $user['AdminID'],
+            ];
+            // Send the authenticated user to the dashboard page.
+            header('Location: admin-dashboard.php');
+            exit;
+        }
 
-        // Send the authenticated user to the dashboard page.
-        header('Location: admin-dashboard.php');
-        exit;
+        // Show a generic error when the account is missing or the password does not match.
+        $error = 'Invalid login credentials.';
     }
-
-    // Show a generic error when the account is missing or the password does not match.
-    $error = 'Invalid login credentials.';
 }
 ?>
 <!DOCTYPE html>
