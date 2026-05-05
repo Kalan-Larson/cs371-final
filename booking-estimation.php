@@ -14,6 +14,7 @@ $selectedServices = $_POST['services[]'] ?? [];
 $yardSize = $_POST['yard_size'] ?? '';
 $notes = $_POST['notes'] ?? '';
 $preferredDate = $_POST['preferred_date'] ?? '';
+$preferredTime = $_POST['preferred_time'] ?? '';
 
 // Set selected service session variable to pass data to the confirmation page
 // when this page is submitted.
@@ -22,6 +23,7 @@ $_SESSION['selectedServices'] = $selectedServices;
 // $_SESSION['yardSize'] = $yardSize;
 // $_SESSION['notes'] = $notes;
 // $_SESSION['preferredDate'] = $preferredDate;
+// $_SESSION['preferredTime'] = $preferredTime;
 
 // Calculate total base cost of all selected services
 $totalBaseCost = 0;
@@ -64,6 +66,7 @@ if (count($selectedServices) > 2) {
                 <input type="hidden" name="yardSize" value="<?php echo htmlspecialchars($yardSize); ?>">
                 <input type="hidden" name="notes" value="<?php echo htmlspecialchars($notes); ?>">
                 <input type="hidden" name="preferredDate" value="<?php echo htmlspecialchars($preferredDate); ?>">
+                <input type="hidden" name="preferredTime" value="<?php echo htmlspecialchars($preferredTime); ?>">
                 <input type="hidden" name="totalBaseCost" value="<?php echo htmlspecialchars($totalBaseCost); ?>">
                 <input type="hidden" name="finalCost" value="<?php echo htmlspecialchars($finalCost); ?>">
                 <input type="hidden" name="discount" value="<?php echo htmlspecialchars($discount); ?>">

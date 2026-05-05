@@ -60,6 +60,9 @@ $services = $conn->query($sql);
                 <label for="preferred_date">Preferred Date</label>
                 <input type="date" id="preferred_date" name="preferred_date">
 
+                <label for="preferred_time">Preferred Time</label>
+                <input type="time" id="preferred_time" name="preferred_time">
+
                 <button type="submit">Book Services</button>
             </form>
         </section>

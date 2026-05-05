@@ -18,6 +18,7 @@ $customerID = (int) ($user['CustomerID'] ?? 0);
 $yardSize = $_POST['yardSize'] ?? '';
 $notes = $_POST['notes'] ?? '';
 $preferredDate = $_POST['preferredDate'] ?? '';
+$preferredTime = $_POST['preferredTime'] ?? '';
 $totalBaseCost = $_POST['totalBaseCost'] ?? 0;
 $finalCost = $_POST['finalCost'] ?? 0;
 $discount = $_POST['discount'] ?? 0;
@@ -25,7 +26,7 @@ $discount = $_POST['discount'] ?? 0;
 // Default values for certain attributes
 $status = 'Pending';
 $serviceProvider = 'Unknown';
-$message = 'Your booking has been confirmed. Thank you for choosing our services!';
+$message = 'Your booking is pending.';
 
 // Create new service request
 $sql = "INSERT INTO service_requests (CustomerID, YardSize, Notes, BaseTotal, DiscountPercent, FinalEstimate, Status) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -45,14 +46,11 @@ foreach ($selectedServices as $service) {
     $stmt->execute();
 }
 
-// Get current date and time
-$bookingTime = date('Y-m-d H:i:s');
-
 // Create new booking record that binds the service request
 // and the customer to it
 $sql = "INSERT INTO bookings (CustomerID, RequestID, FinalPrice, RequestedDate, BookingTime, Status, ServiceProvider) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iidssss", $customerID, $serviceRequestID, $finalCost, $preferredDate, $bookingTime, $status, $serviceProvider);
+$stmt->bind_param("iidssss", $customerID, $serviceRequestID, $finalCost, $preferredDate, $preferredTime, $status, $serviceProvider);
 $stmt->execute();
 
 // Get the ID of the newly created booking
