@@ -96,8 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit">Login</button>
         </form>
 
+        <a href="admin-login.php" class="btn-login">Employee Login</a>
+
         <!-- Display the demo credentials for quick testing. -->
         <p>Demo: john@example.com / hashedpass1</p>
+
+
     </div>
 </main>
 <?php require 'footer.php'; ?>

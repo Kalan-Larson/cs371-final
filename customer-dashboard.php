@@ -41,6 +41,11 @@ $user = $_SESSION['customer'];
                 <p>Share your experience with us.</p>
             </a>
 
+            <a href="customer-update.php" class="dashboard-card">
+                <h3>Update Profile</h3>
+                <p>Manage your account information.</p>
+            </a>
+
         </div>
 
     </section>
