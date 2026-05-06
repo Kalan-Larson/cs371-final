@@ -1,7 +1,6 @@
 <?php
 include("db.php");
-require 'header.php';
-
+include 'header.php';
 //Checks if the customer is logged in.
 //If not, redirects them to the login page.
 if (!isset($_SESSION['customer'])) {
@@ -20,6 +19,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $bookings = $result->fetch_all(MYSQLI_ASSOC);
 ?>
+<main class="container">
     <div>
 
         <section>
@@ -46,5 +46,7 @@ $bookings = $result->fetch_all(MYSQLI_ASSOC);
             </table>
         </section>
 
-        <?php require 'footer.php'; ?>
     </div>
+</main>
+
+<?php require 'footer.php'; ?>

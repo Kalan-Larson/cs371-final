@@ -1,7 +1,6 @@
 <?php
 include("db.php");
-require 'header.php';
-
+include 'header.php';
 //Checks if the customer is logged in.
 //If not, redirects them to the login page.
 if (!isset($_SESSION['customer'])) {
@@ -12,6 +11,7 @@ if (!isset($_SESSION['customer'])) {
 $sql = "SELECT * FROM services";
 $services = $conn->query($sql);
 ?>
+<main class="container">
     <div>
 
         <section>
@@ -20,7 +20,6 @@ $services = $conn->query($sql);
                 <table>
                     <thead>
                         <tr>
-                            <th>Select</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Base Price</th>
@@ -31,7 +30,7 @@ $services = $conn->query($sql);
                         <?php foreach ($services as $service): ?>
                             <tr>
                                 <td>
-                                    <input type="checkbox" id="services[]" name="services[]" value="<?php echo htmlspecialchars($service['ServiceID']); ?>">
+                                    <input type="checkbox" name="services[]" value="<?php echo htmlspecialchars($service['ServiceID']); ?>">
                                     <label for="services[]">Select Service</label>
                                 </td>
                                 <td><?php echo htmlspecialchars($service['Name']); ?></td>
@@ -59,5 +58,6 @@ $services = $conn->query($sql);
             </form>
         </section>
 
-        <?php require 'footer.php'; ?>
     </div>
+</main>
+<?php require 'footer.php'; ?>

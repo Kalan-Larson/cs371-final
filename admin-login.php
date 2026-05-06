@@ -1,5 +1,4 @@
 <?php
-require 'header.php';
 
 // Start the session and load the shared database connection.
 session_start();
@@ -7,7 +6,7 @@ session_start();
 // This file defines $conn using mysqli to connect to MySQL.
 
 require_once 'db.php';
-
+require 'header.php';
 // Skip the login screen if the user is already authenticated.
 // Or redirect them straight to the home page.
 
@@ -49,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
-        $result = $statement->get_result();
-
         // Check if a row was returned.
-        if ($result->num_rows === 1) {
+        if ($statement->affected_rows === 1) {
+            // Read the first matching account, if one exists.
+            $result = $statement->get_result();
             $user = $result->fetch_assoc();
             $result->free();
             $statement->close();
@@ -71,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<main class="container">
     <div>
         <h1>Login</h1>
         <p>Enter your account details.</p>
@@ -97,4 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Display the demo credentials for quick testing. -->
         <p>Demo: admin1 / adminpass1</p>
     </div>
-    <?php require 'footer.php'; ?>
+</main>
+
+<?php require 'footer.php'; ?>

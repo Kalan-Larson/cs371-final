@@ -1,5 +1,4 @@
 <?php
-require 'header.php';
 
 // Start the session and load the shared database connection.
 session_start();
@@ -7,6 +6,7 @@ session_start();
 // This file defines $conn using mysqli to connect to MySQL.
 
 require_once 'db.php';
+require 'header.php';
 
 // Skip the login screen if the user is already authenticated.
 // Or redirect them straight to the home page.
@@ -19,6 +19,7 @@ if (isset($_SESSION['customer'])) {
 // Initialize the default page state.
 $error = '';
 $email = '';
+$password = '';
 
 // Handle form submission and validate the supplied credentials.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,25 +35,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Look up the customer instance by email and password.
         $statement = $conn->prepare(
-            'SELECT CustomerID FROM customers WHERE Email = ? AND PasswordHash = ? LIMIT 1'
+            'SELECT CustomerID from customers WHERE Email = ? AND PasswordHash = ?'
         );
+        $statement->bind_param('ss', $email, $password);
 
         // Abort if the database query could not be prepared.
         if (!$statement) {
             exit('Database statement preparation failed: ' . $conn->error);
         }
 
-        $statement->bind_param('ss', $email, $password);
-
         // Run the account lookup query.
         if (!$statement->execute()) {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
-        $result = $statement->get_result();
-
         // Check if a row was returned.
-        if ($result->num_rows === 1) {
+        if ($statement->affected_rows === 1) {
+            // Read the first matching account, if one exists.
+            $result = $statement->get_result();
             $user = $result->fetch_assoc();
             $result->free();
             $statement->close();
@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<main class="container">
     <div>
         <h1>Login</h1>
         <p>Enter your account details.</p>
@@ -98,4 +99,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Display the demo credentials for quick testing. -->
         <p>Demo: john@example.com / hashedpass1</p>
     </div>
-    <?php require 'footer.php'; ?>
+</main>
+<?php require 'footer.php'; ?>

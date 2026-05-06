@@ -1,6 +1,6 @@
 <?php
 include("db.php");
-require 'header.php';
+require 'header.php'; 
 
 // Get session variables
 session_start();
@@ -74,7 +74,13 @@ $stmt->bind_param("iis", $bookingID, $customerID, $message);
 $stmt->execute();
 
 ?>
+<main class="container">
+    <div>
+    <?php require 'header-customer.php'; ?>
+
     <h1>Booking Confirmation</h1>
     <p><?php echo $message; ?></p>
+    </div>
+</main> 
+<?php require 'footer.php'; ?>
 
-    <?php require 'footer.php'; ?>

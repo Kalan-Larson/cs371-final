@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require 'header.php';
 
 if (isset($_SESSION['customer'])) {
     header('Location: customer-dashboard.php');
@@ -25,15 +26,7 @@ if (isset($_POST['register'])) {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Registration</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<main class="container">
     <div>
         <h1>Register</h1>
         <p>Create a new account.</p>
@@ -63,5 +56,5 @@ if (isset($_POST['register'])) {
         <!-- Display a link to the login page for existing users. -->
         <p><a href="customer-login.php">Already have an account? Login here.</a></p>
     </div>
-</body>
-</html>
+</main>
+<?php require 'footer.php'; ?>

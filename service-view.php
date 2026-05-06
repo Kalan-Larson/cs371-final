@@ -1,7 +1,9 @@
 <?php
 include("db.php");
-require 'header.php';
+include 'header.php';
 ?>
+<main class="container">
+    <div>
 
 <h1>Services</h1>
 
@@ -33,7 +35,8 @@ if ($result->num_rows > 0) {
 } else {
     echo "<p>No results found</p>";
 }
-
-
 ?>
+
+    </div>
+</main>
 <?php require 'footer.php'; ?>
