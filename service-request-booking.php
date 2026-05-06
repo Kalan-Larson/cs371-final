@@ -20,6 +20,7 @@ $services = $conn->query($sql);
                 <table>
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Base Price</th>
@@ -31,7 +32,6 @@ $services = $conn->query($sql);
                             <tr>
                                 <td>
                                     <input type="checkbox" name="services[]" value="<?php echo htmlspecialchars($service['ServiceID']); ?>">
-                                    <label for="services[]">Select Service</label>
                                 </td>
                                 <td><?php echo htmlspecialchars($service['Name']); ?></td>
                                 <td><?php echo htmlspecialchars($service['Description']); ?></td>
