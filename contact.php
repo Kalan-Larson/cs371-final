@@ -40,6 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <br><br>
 
             <button type="submit" class="btn primary">Submit</button>
         </form>
