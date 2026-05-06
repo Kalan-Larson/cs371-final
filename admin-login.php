@@ -48,10 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
+        $result = $statement->get_result();
+
         // Check if a row was returned.
-        if ($statement->affected_rows === 1) {
-            // Read the first matching account, if one exists.
-            $result = $statement->get_result();
+        if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             $result->free();
             $statement->close();
