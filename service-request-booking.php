@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+require 'header.php';
 
 //Checks if the customer is logged in.
 //If not, redirects them to the login page.
@@ -11,17 +12,7 @@ if (!isset($_SESSION['customer'])) {
 $sql = "SELECT * FROM services";
 $services = $conn->query($sql);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Services</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
     <div>
-        <?php require 'header-customer.php'; ?>
 
         <section>
             <h1>Book Services Here!</h1>
@@ -29,6 +20,7 @@ $services = $conn->query($sql);
                 <table>
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Base Price</th>
@@ -39,7 +31,7 @@ $services = $conn->query($sql);
                         <?php foreach ($services as $service): ?>
                             <tr>
                                 <td>
-                                    <input type="checkbox" name="services[]" value="<?php echo htmlspecialchars($service['ServiceID']); ?>">
+                                    <input type="checkbox" id="services[]" name="services[]" value="<?php echo htmlspecialchars($service['ServiceID']); ?>">
                                     <label for="services[]">Select Service</label>
                                 </td>
                                 <td><?php echo htmlspecialchars($service['Name']); ?></td>
@@ -69,5 +61,3 @@ $services = $conn->query($sql);
 
         <?php require 'footer.php'; ?>
     </div>
-</body>
-</html>

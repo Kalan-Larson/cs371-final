@@ -1,4 +1,5 @@
 <?php
+require 'header.php';
 
 // Start the session and load the shared database connection.
 session_start();
@@ -71,15 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
     <div>
         <h1>Login</h1>
         <p>Enter your account details.</p>
@@ -106,5 +98,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Display the demo credentials for quick testing. -->
         <p>Demo: john@example.com / hashedpass1</p>
     </div>
-</body>
-</html>
+    <?php require 'footer.php'; ?>

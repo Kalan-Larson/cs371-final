@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+require 'header.php';
 
 //Checks if the customer is logged in.
 //If not, redirects them to the login page.
@@ -10,7 +11,7 @@ if (!isset($_SESSION['customer'])) {
 
 // Collect submitted form data
 $self = $_SERVER['PHP_SELF'];
-$selectedServices = $_POST['services[]'] ?? [];
+$selectedServices = $_POST['services'] ?? [];
 $yardSize = $_POST['yard_size'] ?? '';
 $notes = $_POST['notes'] ?? '';
 $preferredDate = $_POST['preferred_date'] ?? '';
@@ -48,17 +49,7 @@ if (count($selectedServices) > 2) {
     $discount = 10;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Estimation</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
     <div>
-        <?php require 'header-customer.php'; ?>
 
         <section>
             <h1>Booking Estimation</h1>
@@ -78,11 +69,9 @@ if (count($selectedServices) > 2) {
 
                 <h2>Do you wish to confirm this booking?</h2>
                 <button type="submit">Confirm Booking</button>
-                <button><a href="index.php">Cancel</a></button>
+                <button><a href="service-request-booking.php">Cancel</a></button>
             </form>
         </section>
 
         <?php require 'footer.php'; ?>
     </div>
-</body>
-</html>

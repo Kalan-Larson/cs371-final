@@ -1,5 +1,6 @@
 <?php
 include("db.php");
+require 'header.php';
 
 //Checks if the customer is logged in.
 //If not, redirects them to the login page.
@@ -19,17 +20,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $bookings = $result->fetch_all(MYSQLI_ASSOC);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking History</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
     <div>
-        <?php require 'header-customer.php'; ?>
 
         <section>
             <h1>Booking History</h1>
@@ -57,5 +48,3 @@ $bookings = $result->fetch_all(MYSQLI_ASSOC);
 
         <?php require 'footer.php'; ?>
     </div>
-</body>
-</html>
