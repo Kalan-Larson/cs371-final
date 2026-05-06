@@ -56,7 +56,7 @@ $services = $conn->query($sql);
 
                 <br><br>
 
-                <button type="submit" class="btn">Book Services</button>
+                <button type="submit" class="btn primary">Book Services</button>
             </form>
         <!-- </section> -->
 

@@ -62,7 +62,8 @@
 <section class="cta">
     <h2>Let's Get Started!</h2>
     <a href="registration.php" class="btn primary">Register</a>
-    <p><a href="customer-login.php">Already have an account? Login</a></p>
+    <h2>Already have an account?</h2>
+    <p><a href="customer-login.php" class="btn primary">Login</a></p>
 </section>
 
 </main>

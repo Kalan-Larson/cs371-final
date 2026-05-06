@@ -43,7 +43,7 @@ $result = $conn->query($sql);
 
             <label>Comment</label>
             <textarea name="comment" rows="4" required></textarea>
-
+            <br><br>
             <button type="submit" class="btn primary">Submit</button>
         </form>
     </section>

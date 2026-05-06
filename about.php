@@ -29,7 +29,7 @@
     <section class="cta">
         <h2><strong>Ready to get started?</strong></h2>
         <a href="registration.php" class="btn primary">Register</a>
-        <p><a href="service-view.php">View Services</a></p>
+        <p><a href="service-view.php" class="btn primary">View Services</a></p>
     </section>
 
 </main>

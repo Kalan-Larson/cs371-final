@@ -5,6 +5,6 @@ require 'header.php';
 ?>
 <main class="container">
     <h1>You have been logged out.</h1>
-    <p><a href="home.php">Return to the homepage</a></p>
+    <p><a href="home.php" class="btn primary">Return to the homepage</a></p>
 </main>
 <?php require 'footer.php'; ?>

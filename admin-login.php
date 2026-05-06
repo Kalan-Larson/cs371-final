@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <br><br>
 
             <!-- Submit the login form to start authentication. -->
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn primary">Login</button>
         </form>
 
         <!-- Display the demo credentials for quick testing. -->
