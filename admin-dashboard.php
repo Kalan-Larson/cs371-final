@@ -11,11 +11,12 @@ if (!isset($_SESSION['admin'])) {
 // Handle status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bookingID = $_POST['booking_id'] ?? 0;
+    $serviceProvider = $_POST['service_provider'] ?? '';
     $status = $_POST['status'] ?? '';
 
-    if ($bookingID && $status) {
-        $stmt = $conn->prepare("UPDATE bookings SET Status = ? WHERE BookingID = ?");
-        $stmt->bind_param("si", $status, $bookingID);
+    if ($bookingID && $status && $serviceProvider) {
+        $stmt = $conn->prepare("UPDATE bookings SET Status = ?, ServiceProvider = ? WHERE BookingID = ?");
+        $stmt->bind_param("ssi", $status, $serviceProvider, $bookingID);
         $stmt->execute();
     }
 }
@@ -41,6 +42,7 @@ $result = $conn->query($sql);
                     <th>Time</th>
                     <th>Price</th>
                     <th>Status</th>
+                    <th>Service Provider</th>
                     <th>Update</th>
                 </tr>
             </thead>
@@ -54,21 +56,22 @@ $result = $conn->query($sql);
                         <td><?php echo htmlspecialchars($row['BookingTime']); ?></td>
                         <td>$<?php echo number_format($row['FinalPrice'], 2); ?></td>
 
-                        <td><?php echo htmlspecialchars($row['Status']); ?></td>
-
-                        <td>
-                            <form method="post">
+                        <form method="post">
+                            <td>
                                 <input type="hidden" name="booking_id" value="<?php echo $row['BookingID']; ?>">
-
                                 <select name="status">
                                     <option value="Pending" <?php if ($row['Status'] == 'Pending') echo 'selected'; ?>>Pending</option>
                                     <option value="Confirmed" <?php if ($row['Status'] == 'Confirmed') echo 'selected'; ?>>Confirmed</option>
                                     <option value="Completed" <?php if ($row['Status'] == 'Completed') echo 'selected'; ?>>Completed</option>
                                 </select>
-
+                            </td>
+                            <td>
+                                <input type="text" name="service_provider" value="<?php echo htmlspecialchars($row['ServiceProvider']); ?>">
+                            </td>
+                            <td>
                                 <button type="submit" class="btn">Update</button>
-                            </form>
-                        </td>
+                            </td>
+                        </form>
                     </tr>
                 <?php endwhile; ?>
             </tbody>
