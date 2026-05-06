@@ -65,7 +65,7 @@
 
 <!-- FINAL CTA -->
 <section class="cta">
-    <h2>Let’s Get Started!</h2>
+    <h2>Let's Get Started!</h2>
     <a href="registration.php" class="btn primary">Register</a>
     <p><a href="customer-login.php">Already have an account? Login</a></p>
 </section>

@@ -38,7 +38,7 @@ $result = $conn->query($sql);
             <label>Email</label>
             <input type="email" name="email">
 
-            <label>Rating (1–5)</label>
+            <label>Rating (1-5)</label>
             <input type="number" name="rating" min="1" max="5">
 
             <label>Comment</label>
