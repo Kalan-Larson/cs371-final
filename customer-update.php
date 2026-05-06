@@ -55,6 +55,8 @@ $user = $result->fetch_assoc();
             <label>Address</label>
             <input type="text" name="address" value="<?php echo htmlspecialchars($user['Address']); ?>">
 
+            <br><br>
+
             <button type="submit" class="btn primary">Update</button>
 
         </form>

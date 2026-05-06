@@ -69,6 +69,8 @@ if (count($selectedServices) > 2) {
                 <p>Discount: <?php echo $discount; ?>%</p>
                 <p>Final Cost: $<?php echo number_format($finalCost, 2); ?></p>
 
+                <br><br>
+
                 <h2>Do you wish to confirm this booking?</h2>
                 <button type="submit">Confirm Booking</button>
                 <button><a href="index.php">Cancel</a></button>

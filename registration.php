@@ -50,6 +50,8 @@ if (isset($_POST['register'])) {
             <label for="address">Address</label>
             <input type="text" id="address" name="address" required>
 
+            <br><br>
+
             <button type="submit" name="register">Register</button>
         </form>
 

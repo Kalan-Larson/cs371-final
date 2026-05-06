@@ -90,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
+            <br><br>
+
             <!-- Submit the login form to start authentication. -->
-            <button type="submit">Login</button>
+            <button type="submit" class="btn">Login</button>
         </form>
 
         <!-- Display the demo credentials for quick testing. -->

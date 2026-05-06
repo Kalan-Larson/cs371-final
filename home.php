@@ -40,6 +40,8 @@
         </div>
     </div>
 
+    <br><br>
+
     <!-- CTA to full services -->
     <div class="center">
         <a href="service-view.php" class="btn">View All Services</a>

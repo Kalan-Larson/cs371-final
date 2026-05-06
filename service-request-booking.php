@@ -14,7 +14,7 @@ $services = $conn->query($sql);
 <main class="container">
     <div>
 
-        <section>
+        <!-- <section> -->
             <h1>Book Services Here!</h1>
             <form action="booking-estimation.php" method="post">
                 <table>
@@ -54,9 +54,11 @@ $services = $conn->query($sql);
                 <label for="preferred_time">Preferred Time</label>
                 <input type="time" id="preferred_time" name="preferred_time">
 
-                <button type="submit">Book Services</button>
+                <br><br>
+
+                <button type="submit" class="btn">Book Services</button>
             </form>
-        </section>
+        <!-- </section> -->
 
     </div>
 </main>
