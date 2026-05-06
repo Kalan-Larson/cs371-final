@@ -1,14 +1,7 @@
 <?php require 'header.php'; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<main class="container">
+    <!-- Content will go here -->
 
 <!-- HERO SECTION -->
 <section class="hero">
@@ -70,7 +63,6 @@
     <p><a href="customer-login.php">Already have an account? Login</a></p>
 </section>
 
-<?php require 'footer.php'; ?>
+</main>
 
-</body>
-</html>
+<?php require 'footer.php'; ?>
