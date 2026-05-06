@@ -18,7 +18,6 @@ if (isset($_SESSION['admin'])) {
 // Initialize the default page state.
 $error = '';
 $username = '';
-$password = '';
 
 // Handle form submission and validate the supplied credentials.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -34,24 +33,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Look up the admin instance by username and password.
         $statement = $conn->prepare(
-            'SELECT AdminID from admins WHERE Username = ? AND PasswordHash = ?'
+            'SELECT AdminID FROM admins WHERE Username = ? AND PasswordHash = ? LIMIT 1'
         );
-        $statement->bind_param('ss', $username, $password);
 
         // Abort if the database query could not be prepared.
         if (!$statement) {
             exit('Database statement preparation failed: ' . $conn->error);
         }
 
+        $statement->bind_param('ss', $username, $password);
+
         // Run the account lookup query.
         if (!$statement->execute()) {
             exit('Database statement execution failed: ' . $statement->error);
         }
 
+        $result = $statement->get_result();
+
         // Check if a row was returned.
-        if ($statement->affected_rows === 1) {
-            // Read the first matching account, if one exists.
-            $result = $statement->get_result();
+        if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
             $result->free();
             $statement->close();
